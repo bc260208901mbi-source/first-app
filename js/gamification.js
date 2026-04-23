@@ -18,6 +18,8 @@ const Gamification = (() => {
     604800, // Level 10 (~168 hr)
   ];
 
+  const MS_PER_DAY = 86400000;
+
   const THEME_UNLOCK_LEVELS = {
     dark: 1,
     light: 1,
@@ -42,7 +44,7 @@ const Gamification = (() => {
     if (!data.lastActiveDate) return;
     const last = new Date(data.lastActiveDate);
     const now = new Date(today);
-    const diffDays = Math.floor((now - last) / 86400000);
+    const diffDays = Math.floor((now - last) / MS_PER_DAY);
     if (diffDays > 1) {
       data.streak = 0;
       save();

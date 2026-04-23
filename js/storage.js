@@ -42,6 +42,8 @@ const DEFAULT_GAMIFICATION = {
   totalFocusSeconds: 0,
 };
 
+const MAX_SESSIONS = 500;
+
 const Storage = {
   getSettings() {
     try {
@@ -92,7 +94,7 @@ const Storage = {
   saveSessions(sessions) {
     try {
       // Keep last 500 sessions
-      const trimmed = sessions.slice(-500);
+      const trimmed = sessions.slice(-MAX_SESSIONS);
       localStorage.setItem(STORAGE_KEYS.SESSIONS, JSON.stringify(trimmed));
     } catch (e) {
       console.warn('FocusForge: Could not save sessions', e);

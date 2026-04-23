@@ -4,6 +4,8 @@
 
 // ─── App State ────────────────────────────────────────────────────────────────
 const App = (() => {
+  const DISTRACTION_THRESHOLD_MS = 10000; // 10 seconds away before showing distraction warning
+
   let settings = null;
   let gameData = null;
 
@@ -526,7 +528,7 @@ const App = (() => {
     } else {
       if (hiddenSince && phase === 'work' && Timer.isRunning()) {
         const awayMs = Date.now() - hiddenSince;
-        if (awayMs > 10000 && !distractedWarningShown) {
+        if (awayMs > DISTRACTION_THRESHOLD_MS && !distractedWarningShown) {
           distractedWarningShown = true;
           showDistractedWarning(awayMs);
         }
