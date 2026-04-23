@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FocusForge — Advanced Pomodoro timer with gamification, analytics &amp; wellness features" />
+  <title>FocusForge ⚡ Pomodoro Productivity Timer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236c63ff'/%3E%3Ctext x='32' y='46' font-size='36' text-anchor='middle' fill='white' font-family='Arial'%3E⚡%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════ FOCUS EXIT ═══════════════════════════════ -->
+<button id="btn-focus-exit" style="display:none;">✕ Exit Focus Mode</button>
+
+<!-- ═══════════════════════════════ WELLNESS OVERLAY ════════════════════════ -->
+<div id="wellness-overlay" class="wellness-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="wellness-title-el">
+  <div class="wellness-card">
+    <div class="wellness-emoji">🌿</div>
+    <div class="wellness-title" id="wellness-title-el">Wellness Break</div>
+    <div class="wellness-timer" aria-live="polite">00:00</div>
+    <p style="color:var(--color-text-muted);font-size:0.88rem;margin-bottom:20px;">Take a moment to recharge before your break starts.</p>
+    <button id="btn-skip-wellness" class="btn btn-ghost">Skip →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ COMPLETION MODAL ════════════════════════ -->
+<div id="completion-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
+  <div class="modal-card">
+    <div class="modal-emoji">🏆</div>
+    <div class="modal-title" id="modal-title-el">Session Complete!</div>
+    <div class="modal-subtitle comp-task"></div>
+    <div class="modal-stats">
+      <div class="modal-stat">
+        <div class="modal-stat-label">Focus Time</div>
+        <div class="modal-stat-value comp-time"></div>
+      </div>
+      <div class="modal-stat">
+        <div class="modal-stat-label">Cycles Done</div>
+        <div class="modal-stat-value comp-cycles"></div>
+      </div>
+      <div class="modal-stat">
+        <div class="modal-stat-label">Points Earned</div>
+        <div class="modal-stat-value comp-points"></div>
+      </div>
+      <div class="modal-stat">
+        <div class="modal-stat-label">Level</div>
+        <div class="modal-stat-value comp-level"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button id="btn-close-modal" class="btn btn-ghost">Close</button>
+      <button id="btn-new-session" class="btn btn-primary">New Session</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ APP WRAPPER ══════════════════════════════ -->
+<div class="app-wrapper">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <a class="app-logo" href="#" aria-label="FocusForge Home">
+      <div class="logo-icon" aria-hidden="true">⚡</div>
+      <div class="logo-text">Focus<span>Forge</span></div>
+    </a>
+
+    <div class="header-stats">
+      <div class="stat-badge" id="streak-display" title="Current daily streak">🔥 0</div>
+      <div class="stat-badge" id="level-display" title="Current level">Lv.1</div>
+      <div class="stat-badge level-bar-container" title="Progress to next level">
+        <div class="level-bar-track">
+          <div class="level-bar-fill" id="level-progress-bar" style="width:0%"></div>
+        </div>
+        <span id="level-progress-label">0 pts to Lv.2</span>
+      </div>
+      <div class="stat-badge" id="points-display" title="Total points">⚡ 0 pts</div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="app-nav" role="navigation" aria-label="Main navigation">
+    <button id="nav-timer"     class="nav-btn active" data-nav="timer"     aria-label="Timer">⏱ Timer</button>
+    <button id="nav-analytics" class="nav-btn"        data-nav="analytics" aria-label="Analytics">📊 Analytics</button>
+    <button id="nav-history"   class="nav-btn"        data-nav="history"   aria-label="History">📋 History</button>
+    <button id="nav-settings"  class="nav-btn"        data-nav="settings"  aria-label="Settings">⚙️ Settings</button>
+  </nav>
+
+  <main class="app-main">
+
+    <!-- ══════════════════════ TIMER SCREEN ══════════════════════════════════ -->
+    <section id="timer-screen" class="screen active" aria-label="Timer">
+      <div class="timer-screen-inner">
+
+        <!-- Task input -->
+        <div class="task-input-wrap">
+          <input
+            id="task-input"
+            type="text"
+            class="task-input"
+            placeholder="What are you working on? (optional)"
+            maxlength="100"
+            aria-label="Task name"
+          />
+        </div>
+
+        <!-- Session info -->
+        <div class="session-info">
+          <span class="phase-label" id="phase-label">Ready</span>
+          <span class="cycle-indicator" id="cycle-indicator" aria-live="polite">Cycle 0 / 4</span>
+        </div>
+
+        <!-- Timer ring -->
+        <div class="timer-ring-wrapper" role="timer" aria-live="polite" aria-label="Timer display">
+          <svg class="timer-svg" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle class="timer-ring-bg" cx="140" cy="140" r="126" stroke-width="10"/>
+            <circle id="progress-ring-fill" class="timer-ring-fill" cx="140" cy="140" r="126" stroke-width="10"
+              stroke-dasharray="792" stroke-dashoffset="792"/>
+          </svg>
+          <div class="timer-center">
+            <div id="timer-display" class="timer-display">25:00</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="timer-controls">
+          <button id="btn-start"  class="btn btn-primary">▶ Start</button>
+          <button id="btn-pause"  class="btn btn-secondary" style="display:none;">⏸ Pause</button>
+          <button id="btn-resume" class="btn btn-primary"   style="display:none;">▶ Resume</button>
+          <button id="btn-reset"  class="btn btn-ghost"     style="display:none;">↺ Reset</button>
+          <button id="btn-focus"  class="btn btn-ghost">⛶ Focus Mode</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════ ANALYTICS SCREEN ══════════════════════════════ -->
+    <section id="analytics-screen" class="screen" aria-label="Analytics">
+
+      <div class="analytics-grid">
+        <div class="stat-card accent">
+          <div class="stat-card-label">Today's Focus</div>
+          <div class="stat-card-value" id="stat-today-time">0m</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Today's Sessions</div>
+          <div class="stat-card-value" id="stat-today-sessions">0</div>
+        </div>
+        <div class="stat-card success">
+          <div class="stat-card-label">Total Focus Time</div>
+          <div class="stat-card-value" id="stat-total-time">0m</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Total Sessions</div>
+          <div class="stat-card-value" id="stat-total-sessions">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Avg. Session</div>
+          <div class="stat-card-value" id="stat-avg-session">0m</div>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <div class="section-title">📅 Last 7 Days (Focus Minutes)</div>
+        <canvas id="week-chart" class="chart-canvas" width="600" height="200"></canvas>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════ HISTORY SCREEN ════════════════════════════════ -->
+    <section id="history-screen" class="screen" aria-label="Session history">
+      <div id="history-list" class="history-list">
+        <div class="history-empty">No sessions yet. Start your first focus session!</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ SETTINGS SCREEN ═══════════════════════════════ -->
+    <section id="settings-screen" class="screen" aria-label="Settings">
+
+      <div class="settings-layout">
+
+        <!-- Timer settings -->
+        <div class="settings-section">
+          <div class="settings-section-title">⏱ Timer</div>
+
+          <div class="form-group">
+            <label class="form-label">Preset Mode</label>
+            <div class="preset-group">
+              <button class="preset-btn active" data-preset="pomodoro">🍅 Pomodoro</button>
+              <button class="preset-btn"        data-preset="deepwork">🧠 Deep Work</button>
+              <button class="preset-btn"        data-preset="custom">✏️ Custom</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="setting-work">Work Duration (min)</label>
+            <input id="setting-work" type="number" class="form-control" min="1" max="120" value="25" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="setting-break">Break Duration (min)</label>
+            <input id="setting-break" type="number" class="form-control" min="1" max="60" value="5" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="setting-cycles">Number of Cycles</label>
+            <input id="setting-cycles" type="number" class="form-control" min="1" max="20" value="4" />
+          </div>
+        </div>
+
+        <!-- Sound settings -->
+        <div class="settings-section">
+          <div class="settings-section-title">🔊 Sound</div>
+
+          <div class="form-group">
+            <label class="form-label" for="setting-work-sound">Work End Sound</label>
+            <select id="setting-work-sound" class="form-control">
+              <option value="bell">🔔 Bell</option>
+              <option value="chime">🎵 Chime</option>
+              <option value="alarm">⏰ Alarm</option>
+              <option value="soft">🎐 Soft Bell</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="setting-break-sound">Break End Sound</label>
+            <select id="setting-break-sound" class="form-control">
+              <option value="chime" selected>🎵 Chime</option>
+              <option value="bell">🔔 Bell</option>
+              <option value="alarm">⏰ Alarm</option>
+              <option value="soft">🎐 Soft Bell</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="setting-volume">Volume: <span id="vol-display">70</span>%</label>
+            <input id="setting-volume" type="range" min="0" max="100" value="70"
+              oninput="document.getElementById('vol-display').textContent=this.value" />
+          </div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">Mute All Sounds</span>
+            <label class="toggle-switch">
+              <input id="setting-muted" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-top:14px;">
+            <label class="form-label" for="setting-bg-sound">Background Sound</label>
+            <select id="setting-bg-sound" class="form-control">
+              <option value="none">None</option>
+              <option value="rain">🌧 Rain</option>
+              <option value="forest">🌲 Forest</option>
+              <option value="lofi">🎵 Lo-fi</option>
+              <option value="whitenoise">〰 White Noise</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="setting-bg-volume">BG Volume: <span id="bgvol-display">30</span>%</label>
+            <input id="setting-bg-volume" type="range" min="0" max="100" value="30"
+              oninput="document.getElementById('bgvol-display').textContent=this.value" />
+          </div>
+        </div>
+
+        <!-- Wellness settings -->
+        <div class="settings-section">
+          <div class="settings-section-title">🧘 Wellness</div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">Enable Wellness Breaks</span>
+            <label class="toggle-switch">
+              <input id="setting-wellness" type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="wellness-activities" style="margin-top:14px;">
+            <div class="wellness-activity-row">
+              <span class="wellness-activity-name">💧 Drink Water</span>
+              <input id="setting-water-dur" type="number" class="form-control dur-input" min="1" max="10" value="2" />
+              <label class="toggle-switch">
+                <input id="setting-wellness-water" type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="wellness-activity-row">
+              <span class="wellness-activity-name">🧘 Stretch Neck</span>
+              <input id="setting-stretch-dur" type="number" class="form-control dur-input" min="1" max="10" value="3" />
+              <label class="toggle-switch">
+                <input id="setting-wellness-stretch" type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="wellness-activity-row">
+              <span class="wellness-activity-name">👀 Look Away</span>
+              <input id="setting-eyes-dur" type="number" class="form-control dur-input" min="1" max="10" value="1" />
+              <label class="toggle-switch">
+                <input id="setting-wellness-eyes" type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Behavior settings -->
+        <div class="settings-section">
+          <div class="settings-section-title">🖥️ Behavior</div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">Browser Notifications</span>
+            <label class="toggle-switch">
+              <input id="setting-notifications" type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">Smart Behavior (distraction alert)</span>
+            <label class="toggle-switch">
+              <input id="setting-smart" type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">Auto Focus Mode on Start</span>
+            <label class="toggle-switch">
+              <input id="setting-focus-auto" type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Themes (full width) -->
+        <div class="settings-section" style="grid-column: 1 / -1;">
+          <div class="settings-section-title">🎨 Themes</div>
+          <div class="theme-grid">
+            <button class="theme-btn active" data-theme="dark">
+              <span class="theme-preview">🌑</span>
+              Dark
+              <span class="lock-icon" style="display:none;">🔒</span>
+            </button>
+            <button class="theme-btn" data-theme="light">
+              <span class="theme-preview">☀️</span>
+              Light
+              <span class="lock-icon" style="display:none;">🔒</span>
+            </button>
+            <button class="theme-btn locked" data-theme="neon">
+              <span class="theme-preview">🌈</span>
+              Neon <small>(Lv.3)</small>
+              <span class="lock-icon">🔒</span>
+            </button>
+            <button class="theme-btn locked" data-theme="minimal">
+              <span class="theme-preview">◻️</span>
+              Minimal <small>(Lv.5)</small>
+              <span class="lock-icon">🔒</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Settings actions -->
+      <div class="settings-bottom">
+        <button id="btn-save-settings" class="btn btn-primary">💾 Save Settings</button>
+        <button id="btn-clear-data" class="btn btn-danger">🗑 Clear All Data</button>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- Scripts (order matters: storage → sounds → timer → gamification → analytics → app) -->
+<script src="js/storage.js"></script>
+<script src="js/sounds.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/gamification.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
