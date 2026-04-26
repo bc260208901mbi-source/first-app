@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Pehchan Toys Admin</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF6B35'/%3E%3Ctext x='32' y='46' font-size='36' text-anchor='middle' fill='white' font-family='Arial'%3E🧸%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════════ -->
+  <aside class="sidebar" id="admin-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">🐻</div>
+      <div>
+        <div class="sidebar-logo-text">Pehchan<span>Toys</span></div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
+        <span class="link-icon">📊</span> Dashboard
+      </a>
+      <a href="products.html" class="sidebar-link" data-page="products">
+        <span class="link-icon">🧸</span> Products
+        <span class="sidebar-badge">20</span>
+      </a>
+      <a href="orders.html" class="sidebar-link" data-page="orders">
+        <span class="link-icon">📦</span> Orders
+        <span class="sidebar-badge">10</span>
+      </a>
+      <div class="sidebar-section-label">Store</div>
+      <a href="settings.html" class="sidebar-link" data-page="settings">
+        <span class="link-icon">⚙️</span> Settings
+      </a>
+      <a href="../pehchan-toys.html" class="sidebar-link" target="_blank">
+        <span class="link-icon">🛍️</span> View Store
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Administrator</div>
+          <div class="sidebar-user-role">Super Admin</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="btn-logout">🚪 Logout</button>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ══ MAIN ═════════════════════════════════════════════════ -->
+  <div class="admin-main">
+    <header class="admin-header">
+      <div class="header-left">
+        <button class="header-hamburger" id="admin-hamburger" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <div>
+          <div class="page-title">Settings</div>
+          <div class="breadcrumb">Home / <span>Settings</span></div>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="../pehchan-toys.html" target="_blank" class="header-visit-btn">🛍️ Visit Store</a>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <div class="settings-grid">
+
+        <!-- Store Information -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">🏪 Store Information</div>
+          </div>
+          <div class="panel-body">
+            <form onsubmit="saveSettings(event,'store')">
+              <div class="form-group">
+                <label class="form-label">Store Name</label>
+                <input type="text" class="form-control" value="Pehchan Toys" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tagline</label>
+                <input type="text" class="form-control" value="Pakistan's Most Loved Kids Toy Store" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" value="+92 300 1234567" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">WhatsApp Number</label>
+                <input type="tel" class="form-control" value="+92 300 1234567" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" value="hello@pehchantoys.pk" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Store Address</label>
+                <textarea class="form-control" rows="3">Shop #5, Toy Market, Main Boulevard, Lahore, Pakistan</textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">💾 Save Store Info</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Account Settings -->
+        <div style="display:flex;flex-direction:column;gap:24px;">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">👤 Admin Account</div>
+            </div>
+            <div class="panel-body">
+              <form onsubmit="saveSettings(event,'account')">
+                <div class="form-group">
+                  <label class="form-label">Username</label>
+                  <input type="text" class="form-control" value="admin" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Current Password</label>
+                  <input type="password" class="form-control" placeholder="Enter current password" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">New Password</label>
+                  <input type="password" class="form-control" placeholder="Enter new password" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Confirm New Password</label>
+                  <input type="password" class="form-control" placeholder="Confirm new password" />
+                </div>
+                <button type="submit" class="btn btn-primary">🔐 Update Password</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">🔔 Notifications</div>
+            </div>
+            <div class="panel-body">
+              <div class="toggle-row">
+                <div>
+                  <div class="toggle-label">New Order Alerts</div>
+                  <div class="toggle-desc">Get notified when a new order arrives</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <div class="toggle-label">Low Stock Warnings</div>
+                  <div class="toggle-desc">Alert when product stock falls below 10</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <div class="toggle-label">WhatsApp Order Notifications</div>
+                  <div class="toggle-desc">Receive WhatsApp messages for new orders</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <div class="toggle-label">Daily Summary Email</div>
+                  <div class="toggle-desc">Receive daily order summary via email</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">🛒 Store Settings</div>
+            </div>
+            <div class="panel-body">
+              <div class="toggle-row">
+                <div>
+                  <div class="toggle-label">Maintenance Mode</div>
+                  <div class="toggle-desc">Put the store offline temporarily</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <div class="toggle-label">Show Sale Labels</div>
+                  <div class="toggle-desc">Display sale badges on products</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <div class="toggle-label">Allow Guest Checkout</div>
+                  <div class="toggle-desc">Customers can checkout without account</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" checked />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div style="margin-top:16px;">
+                <button class="btn btn-primary" onclick="saveToggleSettings()">💾 Save Settings</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- /settings-grid -->
+
+      <!-- Social Media -->
+      <div class="panel" style="margin-top:0;">
+        <div class="panel-header">
+          <div class="panel-title">📱 Social Media Links</div>
+        </div>
+        <div class="panel-body">
+          <form onsubmit="saveSettings(event,'social')">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Facebook</label>
+                <input type="url" class="form-control" placeholder="https://facebook.com/…" value="https://facebook.com/pehchantoys" />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Instagram</label>
+                <input type="url" class="form-control" placeholder="https://instagram.com/…" value="https://instagram.com/pehchantoys" />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Twitter / X</label>
+                <input type="url" class="form-control" placeholder="https://twitter.com/…" />
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">YouTube</label>
+                <input type="url" class="form-control" placeholder="https://youtube.com/…" />
+              </div>
+            </div>
+            <div style="margin-top:20px;">
+              <button type="submit" class="btn btn-primary">💾 Save Social Links</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="panel" style="border-color:#ffd5d5;">
+        <div class="panel-header" style="background:#fff5f5;">
+          <div class="panel-title" style="color:var(--danger);">⚠️ Danger Zone</div>
+        </div>
+        <div class="panel-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:600;color:var(--text-dark);">Clear All Orders</div>
+              <div style="font-size:.85rem;color:var(--text-medium);margin-top:2px;">Permanently delete all order records. This cannot be undone.</div>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="dangerAction('clear-orders')">🗑 Clear Orders</button>
+          </div>
+          <div style="height:1px;background:var(--border);margin:16px 0;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:600;color:var(--text-dark);">Reset Store Data</div>
+              <div style="font-size:.85rem;color:var(--text-medium);margin-top:2px;">Reset all products and orders to default. This cannot be undone.</div>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="dangerAction('reset-store')">⚠️ Reset Store</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div id="admin-toast" class="admin-toast"></div>
+
+<script src="../js/admin-auth.js"></script>
+<script>
+  requireAuth();
+  initSidebar();
+  setActiveLink("settings");
+
+  function saveSettings(e, section) {
+    e.preventDefault();
+    const labels = { store:"Store information", account:"Account settings", social:"Social media links" };
+    adminToast(`✅ ${labels[section] || "Settings"} saved!`, "success");
+  }
+
+  function saveToggleSettings() {
+    adminToast("✅ Store settings saved!", "success");
+  }
+
+  function dangerAction(action) {
+    if (action === "clear-orders") {
+      if (confirm("Are you sure you want to clear all orders? This is a demo — no real data will be deleted.")) {
+        adminToast("🗑 Orders cleared (demo only)", "danger");
+      }
+    } else if (action === "reset-store") {
+      if (confirm("Are you sure you want to reset all store data? This is a demo — no real data will be deleted.")) {
+        adminToast("⚠️ Store reset (demo only)", "danger");
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

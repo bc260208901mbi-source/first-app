@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Pehchan Toys Admin</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF6B35'/%3E%3Ctext x='32' y='46' font-size='36' text-anchor='middle' fill='white' font-family='Arial'%3E🧸%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════════ -->
+  <aside class="sidebar" id="admin-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">🐻</div>
+      <div>
+        <div class="sidebar-logo-text">Pehchan<span>Toys</span></div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
+        <span class="link-icon">📊</span> Dashboard
+      </a>
+      <a href="products.html" class="sidebar-link" data-page="products">
+        <span class="link-icon">🧸</span> Products
+        <span class="sidebar-badge">20</span>
+      </a>
+      <a href="orders.html" class="sidebar-link" data-page="orders">
+        <span class="link-icon">📦</span> Orders
+        <span class="sidebar-badge">10</span>
+      </a>
+
+      <div class="sidebar-section-label">Store</div>
+      <a href="settings.html" class="sidebar-link" data-page="settings">
+        <span class="link-icon">⚙️</span> Settings
+      </a>
+      <a href="../pehchan-toys.html" class="sidebar-link" target="_blank">
+        <span class="link-icon">🛍️</span> View Store
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Administrator</div>
+          <div class="sidebar-user-role">Super Admin</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="btn-logout">🚪 Logout</button>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ══ MAIN ═════════════════════════════════════════════════ -->
+  <div class="admin-main">
+
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="header-left">
+        <button class="header-hamburger" id="admin-hamburger" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <div>
+          <div class="page-title">Dashboard</div>
+          <div class="breadcrumb">Home / <span>Dashboard</span></div>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="../pehchan-toys.html" target="_blank" class="header-visit-btn">
+          🛍️ Visit Store
+        </a>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="admin-content">
+
+      <!-- Stat Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon orange">💰</div>
+          <div class="stat-info">
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-value">$3,842</div>
+            <div class="stat-change up">↑ 12.5% this month</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">📦</div>
+          <div class="stat-info">
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-value">10</div>
+            <div class="stat-change up">↑ 3 new today</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">🧸</div>
+          <div class="stat-info">
+            <div class="stat-label">Products</div>
+            <div class="stat-value">20</div>
+            <div class="stat-change up">↑ 5 active categories</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">👥</div>
+          <div class="stat-info">
+            <div class="stat-label">Customers</div>
+            <div class="stat-value">10</div>
+            <div class="stat-change up">↑ 2 new this week</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <!-- Recent Orders -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">📦 Recent Orders</div>
+            <a href="orders.html" class="btn btn-sm btn-secondary">View All</a>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table" id="recent-orders-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recent-orders-body">
+                <!-- JS filled -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Top Products & Category Breakdown -->
+        <div style="display:flex;flex-direction:column;gap:24px;">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">⭐ Top Products</div>
+              <a href="products.html" class="btn btn-sm btn-secondary">View All</a>
+            </div>
+            <div class="panel-body" id="top-products-list">
+              <!-- JS filled -->
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">📂 Stock by Category</div>
+            </div>
+            <div class="panel-body" id="category-stock">
+              <!-- JS filled -->
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- /dashboard-grid -->
+
+    </main>
+  </div><!-- /admin-main -->
+</div><!-- /admin-wrapper -->
+
+<div id="admin-toast" class="admin-toast"></div>
+
+<script src="../js/admin-auth.js"></script>
+<script>
+  requireAuth();
+  initSidebar();
+  setActiveLink("dashboard");
+
+  // Recent orders (last 5)
+  const recentBody = document.getElementById("recent-orders-body");
+  MOCK_ORDERS.slice(0, 5).forEach(o => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><strong>${o.id}</strong></td>
+      <td>
+        <div class="order-cell">
+          <div class="order-avatar">${o.customer[0]}</div>
+          <span>${o.customer}</span>
+        </div>
+      </td>
+      <td><strong>$${o.total.toFixed(2)}</strong></td>
+      <td><span class="badge ${ORDER_STATUS_CLASS[o.status]}">${o.status}</span></td>
+    `;
+    recentBody.appendChild(tr);
+  });
+
+  // Top Products (by rating)
+  const topList = document.getElementById("top-products-list");
+  [...MOCK_PRODUCTS].sort((a,b)=>b.rating-a.rating).slice(0,4).forEach(p => {
+    const stars = "★".repeat(Math.floor(p.rating));
+    const div = document.createElement("div");
+    div.style.cssText = "display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f2f5;";
+    div.innerHTML = `
+      <div style="width:40px;height:40px;border-radius:8px;background:${p.bg};display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">${p.emoji}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:600;font-size:.88rem;color:var(--text-dark)">${p.name}</div>
+        <div style="font-size:.75rem;color:#FFC107">${stars} <span style="color:var(--text-light)">(${p.rating})</span></div>
+      </div>
+      <div style="font-weight:700;color:var(--primary);font-size:.9rem">$${p.price.toFixed(2)}</div>
+    `;
+    div.lastElementChild.style.cssText += "flex-shrink:0;";
+    topList.appendChild(div);
+  });
+
+  // Category stock breakdown
+  const catStock = document.getElementById("category-stock");
+  const cats = ["rc-cars","helicopters","trucks","educational","dolls"];
+  cats.forEach((cat, i) => {
+    const prods  = MOCK_PRODUCTS.filter(p => p.cat === cat);
+    const total  = prods.reduce((s,p)=>s+p.stock,0);
+    const maxTotal = 200;
+    const pct    = Math.round(total / maxTotal * 100);
+    const colors = ["primary","green","blue","purple","primary"];
+    const colorClass = ["","green","blue","purple",""][i];
+    const div = document.createElement("div");
+    div.style.cssText = "margin-bottom:14px;";
+    div.innerHTML = `
+      <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px;">
+        <span style="font-weight:600">${CAT_LABELS[cat]}</span>
+        <span style="color:var(--text-medium)">${total} units</span>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill ${colorClass}" style="width:${pct}%"></div>
+      </div>
+    `;
+    catStock.appendChild(div);
+  });
+</script>
+
+</body>
+</html>
