@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — Pehchan Toys Admin</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF6B35'/%3E%3Ctext x='32' y='46' font-size='36' text-anchor='middle' fill='white' font-family='Arial'%3E🧸%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════════ -->
+  <aside class="sidebar" id="admin-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">🐻</div>
+      <div>
+        <div class="sidebar-logo-text">Pehchan<span>Toys</span></div>
+        <div class="sidebar-logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+      <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
+        <span class="link-icon">📊</span> Dashboard
+      </a>
+      <a href="products.html" class="sidebar-link" data-page="products">
+        <span class="link-icon">🧸</span> Products
+        <span class="sidebar-badge">20</span>
+      </a>
+      <a href="orders.html" class="sidebar-link" data-page="orders">
+        <span class="link-icon">📦</span> Orders
+        <span class="sidebar-badge">10</span>
+      </a>
+      <div class="sidebar-section-label">Store</div>
+      <a href="settings.html" class="sidebar-link" data-page="settings">
+        <span class="link-icon">⚙️</span> Settings
+      </a>
+      <a href="../pehchan-toys.html" class="sidebar-link" target="_blank">
+        <span class="link-icon">🛍️</span> View Store
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Administrator</div>
+          <div class="sidebar-user-role">Super Admin</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="btn-logout">🚪 Logout</button>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ══ MAIN ═════════════════════════════════════════════════ -->
+  <div class="admin-main">
+    <header class="admin-header">
+      <div class="header-left">
+        <button class="header-hamburger" id="admin-hamburger" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <div>
+          <div class="page-title">Products</div>
+          <div class="breadcrumb">Home / <span>Products</span></div>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-primary" onclick="openAddModal()">+ Add Product</button>
+        <a href="../pehchan-toys.html" target="_blank" class="header-visit-btn">🛍️ Visit Store</a>
+      </div>
+    </header>
+
+    <main class="admin-content">
+
+      <!-- Stat summary -->
+      <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px;">
+        <div class="stat-card">
+          <div class="stat-icon orange">🧸</div>
+          <div class="stat-info">
+            <div class="stat-label">Total Products</div>
+            <div class="stat-value">20</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">✅</div>
+          <div class="stat-info">
+            <div class="stat-label">Active</div>
+            <div class="stat-value" id="count-active">—</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">⚠️</div>
+          <div class="stat-info">
+            <div class="stat-label">Low Stock</div>
+            <div class="stat-value" id="count-low">—</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">📦</div>
+          <div class="stat-info">
+            <div class="stat-label">Total Units</div>
+            <div class="stat-value" id="count-units">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products table -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">🧸 All Products</div>
+          <div class="panel-actions">
+            <button class="btn btn-sm btn-secondary" onclick="exportCSV()">⬇️ Export</button>
+          </div>
+        </div>
+        <div class="panel-body" style="padding-bottom:0;">
+
+          <div class="filter-bar">
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="search" id="product-search" placeholder="Search products…" oninput="filterProducts()" />
+            </div>
+            <select class="filter-select" id="cat-filter" onchange="filterProducts()">
+              <option value="">All Categories</option>
+              <option value="rc-cars">RC Cars</option>
+              <option value="helicopters">Helicopters</option>
+              <option value="trucks">Trucks</option>
+              <option value="educational">Educational</option>
+              <option value="dolls">Dolls</option>
+            </select>
+            <select class="filter-select" id="status-filter" onchange="filterProducts()">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="low-stock">Low Stock</option>
+            </select>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Rating</th>
+                  <th>Label</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body">
+                <!-- JS filled -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ══ ADD / EDIT PRODUCT MODAL ══════════════════════════════ -->
+<div style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(3px);" id="product-modal">
+  <div style="background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.18);">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid #e9ecef;background:#fafbfc;border-radius:16px 16px 0 0;position:sticky;top:0;z-index:1;">
+      <h2 style="font-size:1.1rem;font-weight:700;" id="modal-title">➕ Add Product</h2>
+      <button onclick="closeProductModal()" style="width:32px;height:32px;border-radius:50%;background:#f0f2f5;border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div style="padding:24px 28px;">
+      <form id="product-form" onsubmit="saveProduct(event)">
+        <input type="hidden" id="edit-product-id" />
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product Name <span class="required">*</span></label>
+            <input type="text" id="p-name" class="form-control" placeholder="e.g. Speed Racer RC Car" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Price ($) <span class="required">*</span></label>
+            <input type="number" id="p-price" class="form-control" placeholder="0.00" step="0.01" min="0" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category <span class="required">*</span></label>
+            <select id="p-cat" class="form-control" required>
+              <option value="">Select category</option>
+              <option value="rc-cars">RC Cars</option>
+              <option value="helicopters">Helicopters</option>
+              <option value="trucks">Trucks</option>
+              <option value="educational">Educational</option>
+              <option value="dolls">Dolls</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Stock</label>
+            <input type="number" id="p-stock" class="form-control" placeholder="0" min="0" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Emoji</label>
+            <input type="text" id="p-emoji" class="form-control" placeholder="🧸" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Label</label>
+            <select id="p-label" class="form-control">
+              <option value="">None</option>
+              <option value="New">New</option>
+              <option value="Sale">Sale</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:8px;">
+          <button type="submit" class="btn btn-primary" style="flex:1;">💾 Save Product</button>
+          <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="admin-toast" class="admin-toast"></div>
+
+<script src="../js/admin-auth.js"></script>
+<script>
+  requireAuth();
+  initSidebar();
+  setActiveLink("products");
+
+  // Compute stats
+  document.getElementById("count-active").textContent = MOCK_PRODUCTS.filter(p=>p.status==="active").length;
+  document.getElementById("count-low").textContent    = MOCK_PRODUCTS.filter(p=>p.status==="low-stock").length;
+  document.getElementById("count-units").textContent  = MOCK_PRODUCTS.reduce((s,p)=>s+p.stock,0);
+
+  let filteredProducts = [...MOCK_PRODUCTS];
+
+  function renderTable(data) {
+    const body = document.getElementById("products-table-body");
+    if (data.length === 0) {
+      body.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-light);">No products found</td></tr>`;
+      return;
+    }
+    body.innerHTML = data.map(p => `
+      <tr>
+        <td>
+          <div class="product-cell">
+            <div class="product-thumb" style="background:${p.bg}">${p.emoji}</div>
+            <div class="product-cell-info">
+              <div class="product-cell-name">${p.name}</div>
+              <div class="product-cell-cat">#${p.id}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="badge badge-info">${CAT_LABELS[p.cat]}</span></td>
+        <td><strong>$${p.price.toFixed(2)}</strong></td>
+        <td>
+          <span style="font-weight:${p.stock<20?'700':'500'};color:${p.stock<20?'var(--danger)':'var(--text-dark)'}">
+            ${p.stock} units
+          </span>
+        </td>
+        <td><span style="color:#FFC107">★</span> ${p.rating}</td>
+        <td>${p.label ? `<span class="badge ${p.label==='New'?'badge-success':'badge-danger'}">${p.label}</span>` : '<span style="color:var(--text-light)">—</span>'}</td>
+        <td><span class="badge ${p.status==='active'?'badge-success':'badge-warning'}">${p.status}</span></td>
+        <td>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-sm btn-secondary" onclick="editProduct(${p.id})">✏️</button>
+            <button class="btn btn-sm btn-danger"    onclick="deleteProduct(${p.id})">🗑</button>
+          </div>
+        </td>
+      </tr>
+    `).join("");
+  }
+
+  function filterProducts() {
+    const q      = document.getElementById("product-search").value.toLowerCase();
+    const cat    = document.getElementById("cat-filter").value;
+    const status = document.getElementById("status-filter").value;
+
+    filteredProducts = MOCK_PRODUCTS.filter(p => {
+      const matchQ   = !q || p.name.toLowerCase().includes(q);
+      const matchCat = !cat || p.cat === cat;
+      const matchSt  = !status || p.status === status;
+      return matchQ && matchCat && matchSt;
+    });
+    renderTable(filteredProducts);
+  }
+
+  renderTable(MOCK_PRODUCTS);
+
+  // Modal
+  function openAddModal() {
+    document.getElementById("modal-title").textContent   = "➕ Add Product";
+    document.getElementById("product-form").reset();
+    document.getElementById("edit-product-id").value    = "";
+    document.getElementById("product-modal").style.opacity    = "1";
+    document.getElementById("product-modal").style.visibility = "visible";
+  }
+
+  function editProduct(id) {
+    const p = MOCK_PRODUCTS.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById("modal-title").textContent      = "✏️ Edit Product";
+    document.getElementById("edit-product-id").value        = p.id;
+    document.getElementById("p-name").value                 = p.name;
+    document.getElementById("p-price").value                = p.price;
+    document.getElementById("p-cat").value                  = p.cat;
+    document.getElementById("p-stock").value                = p.stock;
+    document.getElementById("p-emoji").value                = p.emoji;
+    document.getElementById("p-label").value                = p.label || "";
+    document.getElementById("product-modal").style.opacity    = "1";
+    document.getElementById("product-modal").style.visibility = "visible";
+  }
+
+  function closeProductModal() {
+    document.getElementById("product-modal").style.opacity    = "0";
+    document.getElementById("product-modal").style.visibility = "hidden";
+  }
+
+  function saveProduct(e) {
+    e.preventDefault();
+    adminToast("✅ Product saved successfully!", "success");
+    closeProductModal();
+  }
+
+  function deleteProduct(id) {
+    if (confirm("Delete this product? (Demo — no actual data change)")) {
+      adminToast("🗑 Product deleted (demo only)", "danger");
+    }
+  }
+
+  function exportCSV() {
+    adminToast("⬇️ Exporting products CSV…", "success");
+  }
+
+  // Close modal on outside click
+  document.getElementById("product-modal").addEventListener("click", function(e) {
+    if (e.target === this) closeProductModal();
+  });
+</script>
+
+</body>
+</html>

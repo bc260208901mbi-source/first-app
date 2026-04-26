@@ -482,7 +482,7 @@ function handleScroll() {
   if (!header) return;
   header.classList.toggle("scrolled", window.scrollY > 80);
 
-  const sections = ["home","about","services","shop","testimonials","contact"];
+  const sections = ["home","shop","testimonials","contact","services","about"];
   const scrollPos = window.scrollY + 120;
 
   sections.forEach(id => {

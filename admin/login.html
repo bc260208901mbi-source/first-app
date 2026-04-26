@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — Pehchan Toys</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF6B35'/%3E%3Ctext x='32' y='46' font-size='36' text-anchor='middle' fill='white' font-family='Arial'%3E🔐%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="login-page">
+
+<div class="login-card">
+  <div class="login-logo">
+    <span class="login-logo-icon">🐻</span>
+    <h1>Pehchan<span>Toys</span></h1>
+    <p>Admin Control Panel</p>
+  </div>
+
+  <div class="login-error" id="login-error" role="alert">
+    <span>⚠️</span>
+    <span id="login-error-msg">Invalid username or password.</span>
+  </div>
+
+  <form class="login-form" id="login-form" novalidate>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <div class="input-wrap">
+        <span class="input-icon">👤</span>
+        <input type="text" id="username" name="username" placeholder="Enter your username"
+               autocomplete="username" required autofocus />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="input-wrap">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="password" name="password" placeholder="Enter your password"
+               autocomplete="current-password" required />
+      </div>
+    </div>
+
+    <button type="submit" class="login-btn" id="login-submit">
+      🚀 Sign In to Dashboard
+    </button>
+  </form>
+
+  <div class="login-back">
+    <a href="../pehchan-toys.html">← Back to Store</a>
+  </div>
+</div>
+
+<script src="../js/admin-auth.js"></script>
+<script>
+  // If already logged in, redirect to dashboard
+  if (isLoggedIn()) {
+    window.location.href = "dashboard.html";
+  }
+
+  document.getElementById("login-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+    const errorEl  = document.getElementById("login-error");
+    const btn      = document.getElementById("login-submit");
+
+    btn.textContent = "Signing in…";
+    btn.disabled    = true;
+
+    setTimeout(() => {
+      if (doLogin(username, password)) {
+        window.location.href = "dashboard.html";
+      } else {
+        errorEl.classList.add("visible");
+        btn.textContent = "🚀 Sign In to Dashboard";
+        btn.disabled    = false;
+        document.getElementById("password").value = "";
+        document.getElementById("password").focus();
+      }
+    }, 600);
+  });
+
+  // Hide error on input
+  ["username","password"].forEach(id => {
+    document.getElementById(id).addEventListener("input", () => {
+      document.getElementById("login-error").classList.remove("visible");
+    });
+  });
+</script>
+
+</body>
+</html>
