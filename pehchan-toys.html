@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pehchan Toys — Premium kids toy store with RC cars, helicopters, trucks, educational toys, dolls and more! Fast delivery, easy returns." />
+  <title>Pehchan Toys 🧸 — Kids Toy Store</title>
+  <link rel="stylesheet" href="css/toys.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF6B35'/%3E%3Ctext x='32' y='46' font-size='36' text-anchor='middle' fill='white' font-family='Arial'%3E🧸%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ══════════════════════════ TOP STRIP ══════════════════════════════════ -->
+<div class="top-strip">
+  <div class="container">
+    <div class="top-strip-left">
+      <span>📞 +92 300 1234567</span>
+    </div>
+    <div class="top-strip-right">
+      <span>Follow Us:</span>
+      <a href="#" class="social-icon" aria-label="Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="Twitter / X">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon fill="white" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ HEADER ═════════════════════════════════════ -->
+<header class="header" id="header">
+  <div class="container">
+    <a href="#home" class="logo" aria-label="Pehchan Toys Home">
+      <div class="logo-icon">🐻</div>
+      <div class="logo-text">Pehchan<span>Toys</span></div>
+    </a>
+
+    <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+      <a href="#home"          class="nav-link active">Home</a>
+      <a href="#about"         class="nav-link">About Us</a>
+      <a href="#services"      class="nav-link">Services</a>
+      <a href="#testimonials"  class="nav-link">Testimonials</a>
+      <a href="#shop"          class="nav-link">Shop</a>
+      <a href="#contact"       class="nav-link">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="header-btn" id="btn-login" aria-label="Login">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Login
+      </button>
+      <button class="header-btn icon-btn" id="btn-wishlist" aria-label="Wishlist">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </button>
+      <button class="header-btn icon-btn cart-btn" id="btn-cart" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+        Cart
+        <span class="cart-count" id="cart-count" aria-live="polite" aria-label="Cart item count">0</span>
+      </button>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+  <a href="#home"          class="mobile-nav-link">🏠 Home</a>
+  <a href="#about"         class="mobile-nav-link">ℹ️ About Us</a>
+  <a href="#services"      class="mobile-nav-link">⭐ Services</a>
+  <a href="#testimonials"  class="mobile-nav-link">💬 Testimonials</a>
+  <a href="#shop"          class="mobile-nav-link">🛒 Shop</a>
+  <a href="#contact"       class="mobile-nav-link">📞 Contact</a>
+</nav>
+
+<!-- ══════════════════════════ HERO SLIDER ════════════════════════════════ -->
+<section id="home" class="hero" aria-label="Featured products slider">
+  <div class="slider" id="hero-slider">
+    <div class="slides-wrapper" id="slides-wrapper">
+
+      <!-- Slide 1 — RC Cars -->
+      <div class="slide" style="background: linear-gradient(135deg, #FF6B35 0%, #FFB347 100%);">
+        <div class="slide-content">
+          <div class="slide-label">⭐ Best Sellers</div>
+          <h1 class="slide-title">Speed Racer Collection</h1>
+          <p class="slide-tagline">Experience the thrill of RC racing at home!</p>
+          <div class="slide-price">Starting from <strong>$22.99</strong></div>
+          <div class="slide-actions">
+            <button class="btn btn-white" onclick="addToCart(1)">🛒 Add to Cart</button>
+            <button class="btn btn-outline-white" onclick="scrollToShop('rc-cars')">View Details</button>
+          </div>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-main-emoji">🏎</div>
+          <div class="slide-sub-emojis">🚗🚙</div>
+        </div>
+      </div>
+
+      <!-- Slide 2 — Educational -->
+      <div class="slide" style="background: linear-gradient(135deg, #11998E 0%, #38EF7D 100%);">
+        <div class="slide-content">
+          <div class="slide-label">🧠 Brain Boosters</div>
+          <h1 class="slide-title">Learn & Explore Toys</h1>
+          <p class="slide-tagline">Educational toys for bright, curious minds!</p>
+          <div class="slide-price">Starting from <strong>$19.99</strong></div>
+          <div class="slide-actions">
+            <button class="btn btn-white" onclick="addToCart(13)">🛒 Add to Cart</button>
+            <button class="btn btn-outline-white" onclick="scrollToShop('educational')">View Details</button>
+          </div>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-main-emoji">🧱</div>
+          <div class="slide-sub-emojis">🔬🧩</div>
+        </div>
+      </div>
+
+      <!-- Slide 3 — Helicopters -->
+      <div class="slide" style="background: linear-gradient(135deg, #4776E6 0%, #8E54E9 100%);">
+        <div class="slide-content">
+          <div class="slide-label">🚀 New Arrivals</div>
+          <h1 class="slide-title">Sky Adventure Series</h1>
+          <p class="slide-tagline">Soar high with our amazing helicopter range!</p>
+          <div class="slide-price">Starting from <strong>$29.99</strong></div>
+          <div class="slide-actions">
+            <button class="btn btn-white" onclick="addToCart(5)">🛒 Add to Cart</button>
+            <button class="btn btn-outline-white" onclick="scrollToShop('helicopters')">View Details</button>
+          </div>
+        </div>
+        <div class="slide-visual">
+          <div class="slide-main-emoji">🚁</div>
+          <div class="slide-sub-emojis">✈️🛸</div>
+        </div>
+      </div>
+
+    </div><!-- /slides-wrapper -->
+
+    <button class="slider-arrow prev" id="slider-prev" aria-label="Previous slide">&#8249;</button>
+    <button class="slider-arrow next" id="slider-next" aria-label="Next slide">&#8250;</button>
+
+    <div class="slider-dots" role="tablist" aria-label="Slide navigation">
+      <button class="dot active" data-slide="0" role="tab" aria-label="Go to slide 1" aria-selected="true"></button>
+      <button class="dot"        data-slide="1" role="tab" aria-label="Go to slide 2" aria-selected="false"></button>
+      <button class="dot"        data-slide="2" role="tab" aria-label="Go to slide 3" aria-selected="false"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FEATURES / SERVICES ════════════════════════ -->
+<section id="services" class="features" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" id="services-heading">Why Choose <span>Pehchan Toys?</span></h2>
+      <p class="section-subtitle">We care deeply about your children's happiness, safety, and development</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🛡️</span>
+        <h3>Safe &amp; High Quality</h3>
+        <p>All our toys meet international safety standards (CE &amp; ISO certified), ensuring completely worry-free play for children of all ages.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🚀</span>
+        <h3>Fast Delivery</h3>
+        <p>Get your orders delivered quickly and safely across the country. Express delivery available nationwide within 1–3 business days.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">↩️</span>
+        <h3>Easy Returns</h3>
+        <p>Not satisfied? No problem! We offer a 30-day hassle-free return policy. Your satisfaction is our top priority.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ ABOUT SECTION ══════════════════════════════ -->
+<section id="about" class="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-visual">
+        <div class="about-emoji-card">🧸</div>
+        <div class="about-emoji-card">🎮</div>
+        <div class="about-emoji-card">🚀</div>
+        <div class="about-emoji-card">🎨</div>
+      </div>
+      <div class="about-content">
+        <div class="section-header">
+          <h2 class="section-title" id="about-heading">Our <span>Story</span></h2>
+        </div>
+        <p class="about-text">
+          Welcome to <strong>Pehchan Toys</strong> — Pakistan's most loved kids toy store! Founded with a passion for childhood joy, we bring premium quality toys that spark imagination, encourage learning, and create lasting memories.
+        </p>
+        <p class="about-text">
+          From remote control cars that race across living rooms, to educational kits that nurture young scientists — every product in our collection is hand-picked for safety, durability, and sheer fun. We believe every child deserves the best.
+        </p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <strong>5K+</strong>
+            <span>Happy Kids</span>
+          </div>
+          <div class="about-stat">
+            <strong>200+</strong>
+            <span>Toy Varieties</span>
+          </div>
+          <div class="about-stat">
+            <strong>3+</strong>
+            <span>Years of Trust</span>
+          </div>
+        </div>
+        <a href="#shop" class="btn btn-primary">🛍 Shop Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SHOP SECTION ═══════════════════════════════ -->
+<section id="shop" class="shop-section" aria-labelledby="shop-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" id="shop-heading">Our <span>Toy Collection</span></h2>
+      <p class="section-subtitle">Discover amazing toys for every child — from toddlers to teens!</p>
+    </div>
+
+    <div class="shop-layout">
+
+      <!-- ── Sidebar ──────────────────────────────── -->
+      <aside class="shop-sidebar" aria-label="Shop filters">
+
+        <!-- Search -->
+        <div class="sidebar-widget">
+          <h4>🔍 Search</h4>
+          <div class="search-box">
+            <label for="product-search" class="visually-hidden">Search products</label>
+            <input type="search" id="product-search" placeholder="Search toys..." aria-label="Search products" />
+            <button aria-label="Search">🔍</button>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget">
+          <h4>📂 Categories</h4>
+          <ul class="category-list" role="list">
+            <li><a href="#" class="cat-link active" data-cat="all">All Products <span id="cat-count-all">20</span></a></li>
+            <li><a href="#" class="cat-link" data-cat="rc-cars">Remote Control Cars <span>4</span></a></li>
+            <li><a href="#" class="cat-link" data-cat="helicopters">Helicopters <span>4</span></a></li>
+            <li><a href="#" class="cat-link" data-cat="trucks">Trucks <span>4</span></a></li>
+            <li><a href="#" class="cat-link" data-cat="educational">Educational Toys <span>4</span></a></li>
+            <li><a href="#" class="cat-link" data-cat="dolls">Dolls <span>4</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Price Range -->
+        <div class="sidebar-widget">
+          <h4>💰 Price Range</h4>
+          <div class="price-range-wrap">
+            <input type="range" id="price-range" min="0" max="50" value="50" aria-label="Maximum price filter" />
+            <div class="price-labels">
+              <span>$0</span>
+              <span>Up to: <strong id="price-display">$50</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Filter -->
+        <div class="sidebar-widget">
+          <h4>🎨 Color</h4>
+          <div class="color-filters" role="group" aria-label="Color filter">
+            <button class="color-dot" data-color="red"    style="background:#FF6B6B" title="Red"    aria-label="Filter by Red"></button>
+            <button class="color-dot" data-color="blue"   style="background:#4ECDC4" title="Blue"   aria-label="Filter by Blue"></button>
+            <button class="color-dot" data-color="green"  style="background:#56AB2F" title="Green"  aria-label="Filter by Green"></button>
+            <button class="color-dot" data-color="yellow" style="background:#FFD200" title="Yellow" aria-label="Filter by Yellow"></button>
+            <button class="color-dot" data-color="pink"   style="background:#FF758C" title="Pink"   aria-label="Filter by Pink"></button>
+            <button class="color-dot" data-color="orange" style="background:#F09819" title="Orange" aria-label="Filter by Orange"></button>
+            <button class="color-dot" data-color="purple" style="background:#8E54E9" title="Purple" aria-label="Filter by Purple"></button>
+          </div>
+        </div>
+
+        <!-- Top Rated -->
+        <div class="sidebar-widget">
+          <h4>⭐ Top Rated</h4>
+          <div id="top-rated-list" aria-label="Top rated products"></div>
+        </div>
+
+      </aside><!-- /sidebar -->
+
+      <!-- ── Main Content ──────────────────────────── -->
+      <div class="shop-main">
+
+        <!-- Category Tabs -->
+        <div class="category-tabs" role="tablist" aria-label="Product category tabs">
+          <button class="tab-btn active" data-tab="all"         role="tab" aria-selected="true">All</button>
+          <button class="tab-btn"        data-tab="rc-cars"     role="tab" aria-selected="false">🏎 RC Cars</button>
+          <button class="tab-btn"        data-tab="helicopters" role="tab" aria-selected="false">🚁 Helicopters</button>
+          <button class="tab-btn"        data-tab="trucks"      role="tab" aria-selected="false">🚛 Trucks</button>
+          <button class="tab-btn"        data-tab="educational" role="tab" aria-selected="false">📚 Educational</button>
+          <button class="tab-btn"        data-tab="dolls"       role="tab" aria-selected="false">🪆 Dolls</button>
+        </div>
+
+        <p class="products-info" aria-live="polite">
+          <span id="product-count">Showing 20 products</span>
+        </p>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-grid" aria-label="Products">
+          <!-- Populated by toys.js -->
+        </div>
+
+      </div><!-- /shop-main -->
+
+    </div><!-- /shop-layout -->
+  </div>
+</section>
+
+<!-- ══════════════════════════ TESTIMONIALS ═══════════════════════════════ -->
+<section id="testimonials" class="testimonials" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" id="testimonials-heading">What <span>Parents Say</span></h2>
+      <p class="section-subtitle">Real reviews from thousands of happy customers across Pakistan</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-rating" aria-label="5 stars">★★★★★</div>
+        <p>"My kids absolutely love the RC cars from Pehchan Toys! Exceptional quality and delivery was faster than expected. Will definitely order again!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">👩</div>
+          <div>
+            <div class="author-name">Sarah Ahmed</div>
+            <div class="author-title">Mother of 2 · Karachi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-rating" aria-label="5 stars">★★★★★</div>
+        <p>"The Building Blocks Set is amazing! My son spends hours building. I love that it's educational and fun at the same time. Highly recommended!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">👨</div>
+          <div>
+            <div class="author-name">Usman Malik</div>
+            <div class="author-title">Father of 3 · Lahore</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-rating" aria-label="4 stars">★★★★☆</div>
+        <p>"Ordered the Princess Doll for my daughter's birthday — she was overjoyed! Great packaging, safe materials. The WhatsApp checkout was super convenient!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">👩</div>
+          <div>
+            <div class="author-name">Fatima Raza</div>
+            <div class="author-title">Mother of 1 · Islamabad</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTACT SECTION ════════════════════════════ -->
+<section id="contact" class="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" id="contact-heading">Get In <span style="color:#FFE17B">Touch</span></h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.8)">Have questions? We're here to help!</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📞</div>
+          <div class="contact-info-text">
+            <strong>Call Us</strong>
+            <span>+92 300 1234567<br/>Mon–Sat, 9am–7pm</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📧</div>
+          <div class="contact-info-text">
+            <strong>Email Us</strong>
+            <span>hello@pehchantoys.pk</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div class="contact-info-text">
+            <strong>Visit Us</strong>
+            <span>Shop #5, Toy Market, Main Boulevard<br/>Lahore, Pakistan</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">💬</div>
+          <div class="contact-info-text">
+            <strong>WhatsApp Orders</strong>
+            <span>+92 300 1234567<br/>Quick order via WhatsApp!</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleContactSubmit(event)" novalidate>
+        <div class="form-group">
+          <label for="contact-name">Full Name</label>
+          <input type="text" id="contact-name" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="contact-subject">Subject</label>
+          <input type="text" id="contact-subject" placeholder="How can we help?" />
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" placeholder="Tell us more..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-white full-width">✉️ Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FOOTER ═════════════════════════════════════ -->
+<footer class="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="color:white">
+          <div class="logo-icon">🐻</div>
+          <div class="logo-text">Pehchan<span>Toys</span></div>
+        </div>
+        <p>Your trusted destination for premium kids toys. Bringing joy, learning, and adventure to children across Pakistan since 2021.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon fill="white" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Categories</h5>
+        <ul>
+          <li><a href="#" onclick="scrollToShop('rc-cars')">RC Cars</a></li>
+          <li><a href="#" onclick="scrollToShop('helicopters')">Helicopters</a></li>
+          <li><a href="#" onclick="scrollToShop('trucks')">Trucks</a></li>
+          <li><a href="#" onclick="scrollToShop('educational')">Educational</a></li>
+          <li><a href="#" onclick="scrollToShop('dolls')">Dolls</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Customer Care</h5>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Pehchan Toys. All rights reserved. Made with ❤️ for Kids.</p>
+      <p>🔒 Secure Shopping | 🚚 Fast Delivery | ↩️ Easy Returns</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════ CART SIDEBAR ═══════════════════════════════ -->
+<aside class="cart-sidebar" id="cart-sidebar" aria-label="Shopping cart" role="complementary">
+  <div class="cart-header">
+    <h3>🛒 Your Cart</h3>
+    <button class="close-btn" id="close-cart" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items" aria-live="polite">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total:</span>
+      <strong id="cart-total">$0.00</strong>
+    </div>
+    <button class="btn btn-whatsapp full-width" id="btn-checkout">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Checkout via WhatsApp
+    </button>
+    <button class="btn btn-ghost full-width" id="btn-view-full-cart">
+      📋 View Full Cart
+    </button>
+  </div>
+</aside>
+
+<div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+<!-- ══════════════════════════ FULL CART MODAL ════════════════════════════ -->
+<div class="modal-overlay" id="full-cart-modal" role="dialog" aria-modal="true" aria-labelledby="full-cart-title">
+  <div class="full-cart-modal-card">
+    <div class="modal-header">
+      <h2 id="full-cart-title">🛒 Shopping Cart</h2>
+      <button class="close-btn" id="close-full-cart" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-table-wrap" id="full-cart-items" aria-live="polite">
+      <div class="full-cart-empty">
+        <div style="font-size:64px">🛒</div>
+        <p>Your cart is empty</p>
+        <button class="btn btn-primary" onclick="closeFullCart();document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+    <div class="full-cart-footer">
+      <div class="cart-summary">
+        <div>Subtotal: <span id="full-cart-subtotal">$0.00</span></div>
+        <div class="cart-grand-total">Total: <span id="full-cart-total">$0.00</span></div>
+      </div>
+      <button class="btn btn-whatsapp" id="btn-checkout-from-full">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Checkout via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ CHECKOUT MODAL ═════════════════════════════ -->
+<div class="modal-overlay" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+  <div class="checkout-modal-card">
+    <div class="modal-header">
+      <h2 id="checkout-title">📱 Checkout via WhatsApp</h2>
+      <button class="close-btn" id="close-checkout" aria-label="Close checkout">✕</button>
+    </div>
+    <form id="checkout-form" novalidate>
+      <div class="form-group">
+        <label for="checkout-name">Full Name <span style="color:var(--danger)">*</span></label>
+        <input type="text" id="checkout-name" placeholder="Enter your full name" required autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="checkout-phone">Phone Number <span style="color:var(--danger)">*</span></label>
+        <input type="tel" id="checkout-phone" placeholder="+92 300 0000000" required autocomplete="tel" />
+      </div>
+      <div class="form-group">
+        <label for="checkout-address">Address / Notes <span style="color:var(--text-light);font-weight:400">(optional)</span></label>
+        <textarea id="checkout-address" placeholder="Delivery address or special instructions..."></textarea>
+      </div>
+
+      <div class="order-summary">
+        <h4>Order Summary</h4>
+        <div id="checkout-items-list" aria-live="polite"></div>
+        <div class="checkout-total">Total: <strong id="checkout-total-display">$0.00</strong></div>
+      </div>
+
+      <button type="submit" class="btn btn-whatsapp full-width">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Place Order via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════════════════ QUICK VIEW MODAL ═══════════════════════════ -->
+<div class="modal-overlay" id="quick-view-modal" role="dialog" aria-modal="true" aria-label="Product quick view">
+  <div class="quick-view-card">
+    <button class="close-quick-view-btn" id="close-quick-view" aria-label="Close quick view">✕</button>
+    <div id="quick-view-content" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ SCROLL TO TOP ══════════════════════════════ -->
+<button class="scroll-top" id="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+<!-- ══════════════════════════ TOAST ══════════════════════════════════════ -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ══════════════════════════ SCRIPTS ════════════════════════════════════ -->
+<script src="js/toys.js"></script>
+<script>
+  // Contact form handler
+  function handleContactSubmit(e) {
+    e.preventDefault();
+    showToast("✉️ Message sent! We'll reply soon.", "success");
+    e.target.reset();
+  }
+
+  // Scroll-to-top visibility
+  window.addEventListener("scroll", () => {
+    const btn = document.getElementById("scroll-top");
+    if (btn) btn.classList.toggle("visible", window.scrollY > 400);
+  }, { passive: true });
+</script>
+
+</body>
+</html>
